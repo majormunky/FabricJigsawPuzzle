@@ -35,38 +35,37 @@ get_button.addEventListener("click", (event) => {
 
 		image = img;
 
-		draw_grid();
+		puzzlefy();
 	})
 })
 
-function draw_grid() {
+function puzzlefy() {
 	let image_width = parseInt(image.get("width") * image.get("scaleX"), 10);
 	let image_height = parseInt(image.get("height") * image.get("scaleY"), 10);
-
-	let tile_width = image_width / 16;
-	let tile_height = image_height / 10;
+	let tile_width = image_width / 8;
+	let tile_height = image_height / 5;
 
 	for (var x = 0; x < image_width; x += tile_width) {
-		let coords = [x + 10, 10, x + 10, image_height + 10]
-		let line = new fabric.Line(coords, {
-			fill: "red",
-			stroke: "red",
-			strokeWidth: 2,
-		})
-
-		canvas.add(line)
+		for (var y = 0; y < image_height; y += tile_height) {
+			// let coords = [10, y + 10, image_width + 10, y + 10]
+			let puzzle_piece = image.cloneAsImage((img) => {
+				let rx = Math.floor(Math.random() * 1280);
+				let ry = Math.floor(Math.random() * 720);
+				let random_rotation = Math.floor(Math.random() * 360);
+				img.set("left", rx)
+				img.set("top", ry)
+				img.rotate(random_rotation)
+				canvas.add(img)
+			}, {
+				left: x + 10,
+				top: y + 10,
+				width: tile_width,
+				height: tile_height
+			})
+		}
 	}
 
-	for (var y = 0; y < image_height; y += tile_height) {
-		let coords = [10, y + 10, image_width + 10, y + 10]
-		let line = new fabric.Line(coords, {
-			fill: "red",
-			stroke: "red",
-			strokeWidth: 2,
-		})
-
-		canvas.add(line)	
-	}
+	canvas.remove(image)
 
 	console.log(image_width, image_height)
 }
