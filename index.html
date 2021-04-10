@@ -4,8 +4,61 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			min-height: 100vh;
+		}
+
+		canvas {
+			border: 1px solid red;
+		}
+
+		.toolbox {
+			display: flex;
+			margin-top: 20px;
+			width: 50%;
+		}
+
+		.toolbox input {
+			flex-grow: 1;
+			margin-left: 15px;
+			padding: 1em;
+		}
+
+		.btn {
+			padding: 5px 12px;
+			background-color: #6666ff;
+			color: white;
+			font-size: 18px;
+			border-radius: 8px;
+			border: 1px;
+		}
+
+		.btn:hover {
+			background-color: blue;
+			cursor: pointer;
+		}
+	</style>
 </head>
 <body>
+	<div class="container">
+		<canvas id="fabric-canvas" width="1280px" height="720px"></canvas>
+		<div class="toolbox">
+			<button class="btn" id="get-picture-button">Get</button>
+			<input type="text" id="picture-url-input" placeholder="Enter URL of a photo" value="https://i.redd.it/se059cnm7wq61.jpg">
+		</div>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/fabric@4.4.0/dist/fabric.min.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>
