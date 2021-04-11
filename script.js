@@ -42,8 +42,10 @@ get_button.addEventListener("click", (event) => {
 function puzzlefy() {
 	let image_width = parseInt(image.get("width") * image.get("scaleX"), 10);
 	let image_height = parseInt(image.get("height") * image.get("scaleY"), 10);
-	let tile_width = image_width / 8;
-	let tile_height = image_height / 5;
+	let width_parts = 2;
+	let height_parts = 2;
+	let tile_width = image_width / width_parts;
+	let tile_height = image_height / height_parts;
 
 	for (var x = 0; x < image_width; x += tile_width) {
 		for (var y = 0; y < image_height; y += tile_height) {
